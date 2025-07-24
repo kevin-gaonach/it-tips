@@ -29,7 +29,7 @@ if (!($wingetModuleInstalled)) {
 function Show-AppInstallerGUI {
     $form = New-Object Windows.Forms.Form
     $form.Text = "WinGet"
-    $form.Size = New-Object Drawing.Size(360, 990)
+    $form.Size = New-Object Drawing.Size(360, 1070)
 	
     $form.StartPosition = "CenterScreen"
 
@@ -44,6 +44,9 @@ function Show-AppInstallerGUI {
     $categories = @{
         "Développement" = @{
             "GitHub Desktop" = "GitHub.GitHubDesktop"
+        }
+        "Communication" = @{
+			"Discord" = "Discord.Discord"
         }
         "Admins" = @{
             "PuTTY" = "PuTTY.PuTTY"
@@ -74,6 +77,7 @@ function Show-AppInstallerGUI {
             "WinDirStat" = "WinDirStat.WinDirStat"
             "WingetUI" = "MartiCliment.UniGetUI"
             "System Informer" = "WinsiderSS.SystemInformer"
+			"TeamViewer" = "TeamViewer.TeamViewer"
         }
         "Bureautique" = @{
             "PDFsam" = "PDFsam.PDFsam"
