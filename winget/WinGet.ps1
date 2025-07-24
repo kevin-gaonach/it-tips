@@ -41,57 +41,58 @@ function Show-AppInstallerGUI {
 	$titleLabel.Location = New-Object Drawing.Point(10, 5)
 	$form.Controls.Add($titleLabel)
 
-    $categories = @{
-        "Développement" = @{
-            "GitHub Desktop" = "GitHub.GitHubDesktop"
-        }
-        "Communication" = @{
-			"Discord" = "Discord.Discord"
-        }
-        "Admins" = @{
-            "PuTTY" = "PuTTY.PuTTY"
-			"WinSCP" = "WinSCP.WinSCP"
-            "mRemoteNG" = "mRemoteNG.mRemoteNG"
-        }
-        "Streaming" = @{
-            "StreamDeck" = "Elgato.StreamDeck"
-            "OBS Studio" = "OBSProject.OBSStudio"
-        }
-        "Monitoring" = @{
-            "Rivatuner Statistics Server" = "Guru3D.RTSS"
-            "Afterburner" = "Guru3D.Afterburner"
-            "OCCT" = "OCBase.OCCT.Personal"
-        }
-        "Gaming" = @{
-            "Amazon Games" = "Amazon.Games"
-            "EA Desktop" = "ElectronicArts.EADesktop"
-            "Epic Games" = "EpicGames.EpicGamesLauncher"
-            "Playnite" = "Playnite.Playnite"
-            "Steam" = "Valve.Steam"
-            "Ubisoft Connect" = "Ubisoft.Connect"
-            "GOG Galaxy" = "GOG.Galaxy"
-        }
-        "Système" = @{
-            "TunnelBear VPN" = "TunnelBear.TunnelBear"
-            "Veeam Agent" = "Veeam.VeeamAgent"
-            "WinDirStat" = "WinDirStat.WinDirStat"
-            "WingetUI" = "MartiCliment.UniGetUI"
-            "System Informer" = "WinsiderSS.SystemInformer"
-			"TeamViewer" = "TeamViewer.TeamViewer"
-        }
-        "Bureautique" = @{
-            "PDFsam" = "PDFsam.PDFsam"
-            "Adobe Reader" = "Adobe.Acrobat.Reader.64-bit"
-            "Chrome" = "Google.Chrome"
-            "Firefox" = "Mozilla.Firefox.fr"
-            "7-Zip" = "7zip.7zip"
-            "Ant Renamer" = "AntSoftware.AntRenamer"
-            "KeePassXC" = "KeePassXCTeam.KeePassXC"
-            "VLC" = "VideoLAN.VLC"
-            "Greenshot" = "Greenshot.Greenshot"
-            "Notepad++" = "Notepad++.Notepad++"
-        }
+ $categories = @{
+    "Développement" = @{
+        "GitHub Desktop - Interface graphique pour GitHub" = "GitHub.GitHubDesktop"
     }
+    "Communication" = @{
+        "Discord - Chat vocal / texte" = "Discord.Discord"
+    }
+    "Admins" = @{
+        "PuTTY - Client SSH/Telnet" = "PuTTY.PuTTY"
+        "WinSCP - Transfert de fichiers SFTP/FTP" = "WinSCP.WinSCP"
+        "mRemoteNG - Gestionnaire de connexions RDP/SSH" = "mRemoteNG.mRemoteNG"
+    }
+    "Streaming" = @{
+        "StreamDeck - Contrôle de scènes et macros" = "Elgato.StreamDeck"
+        "OBS Studio - Logiciel de streaming/recording" = "OBSProject.OBSStudio"
+    }
+    "Monitoring" = @{
+        "Rivatuner - Affichage stats CPU/GPU en jeu" = "Guru3D.RTSS"
+        "Afterburner - Overclocking et monitoring GPU" = "Guru3D.Afterburner"
+        "OCCT - Test de stabilité CPU/GPU et PSU" = "OCBase.OCCT.Personal"
+    }
+    "Gaming" = @{
+        "Amazon Games - Lanceur de jeux Amazon" = "Amazon.Games"
+        "EA Desktop - Lanceur de jeux  EA" = "ElectronicArts.EADesktop"
+        "Epic Games - Lanceur de jeux Epic Games" = "EpicGames.EpicGamesLauncher"
+        "Playnite - Bibliothèque unifiée de jeux" = "Playnite.Playnite"
+        "Steam - Lanceur de jeux Steam" = "Valve.Steam"
+        "Ubisoft Connect - Lanceur de jeux  Ubisoft" = "Ubisoft.Connect"
+        "GOG Galaxy - Lanceur de jeux GOG" = "GOG.Galaxy"
+    }
+    "Système" = @{
+        "TunnelBear VPN - VPN simple et visuel" = "TunnelBear.TunnelBear"
+        "Veeam Agent - Sauvegarde/restauration système" = "Veeam.VeeamAgent"
+        "WinDirStat - Analyse de l'espace disque" = "WinDirStat.WinDirStat"
+        "WingetUI - Interface graphique pour winget" = "MartiCliment.UniGetUI"
+        "System Informer - Gestionnaire de tâches avancé" = "WinsiderSS.SystemInformer"
+        "TeamViewer - Accès distant sécurisé" = "TeamViewer.TeamViewer"
+    }
+    "Bureautique" = @{
+        "PDFsam - Fusion/split de PDF" = "PDFsam.PDFsam"
+        "Adobe Reader - Lecteur PDF officiel" = "Adobe.Acrobat.Reader.64-bit"
+        "Chrome - Navigateur rapide de Google" = "Google.Chrome"
+        "Firefox - Navigateur libre & respectueux de la vie privée" = "Mozilla.Firefox.fr"
+        "7-Zip - Compression/décompression de fichiers" = "7zip.7zip"
+        "Ant Renamer - Renommage de fichiers en masse" = "AntSoftware.AntRenamer"
+        "KeePassXC - Gestionnaire de mots de passe" = "KeePassXCTeam.KeePassXC"
+        "VLC - Lecteur multimédia universel" = "VideoLAN.VLC"
+        "Greenshot - Capture d’écran simple et efficace" = "Greenshot.Greenshot"
+        "Notepad++ - Éditeur de texte" = "Notepad++.Notepad++"
+    }
+}
+
 
     $checkboxes = @{}
     $y = 35
