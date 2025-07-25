@@ -11,23 +11,17 @@ Deux boutons permettent :
 - d'installer les applications sélectionnées
 - de mettre à jour toutes les applications WinGet installées
 
-Le script utilise Windows Forms pour l'affichage de l'interface.
+.NOTES
+Auteur     : Kevin Gaonach  
+Site Web   : https://github.com/kevin-gaonach/it-tips/  
+Version    : 1.0  
+Date       : 2025-07-25
 
-.AUTEUR
-Kevin Gaonach
-
-.REQUIS
-- Windows 10 ou supérieur avec WinGet disponible
-- Exécution en tant qu'administrateur
-- Accès Internet pour l'installation des applications
-- PowerShell 5.1 ou supérieur
-- Module `Microsoft.WinGet.Client` (installé automatiquement si absent)
-
-.EXEMPLE
+.EXAMPLE
 .\Install-WinGetApps.ps1
 
-.LIENS
-https://github.com/KevinGaonach
+Lance le script et affiche une selection d'application a installer avec WinGet.
+
 #>
 
 Add-Type -AssemblyName System.Windows.Forms

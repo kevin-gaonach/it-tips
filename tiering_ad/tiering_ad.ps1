@@ -19,12 +19,7 @@ Un fichier log est genere a chaque execution dans le dossier du script avec un n
 Auteur     : Kevin Gaonach  
 Site Web   : https://github.com/kevin-gaonach/it-tips/  
 Version    : 1.0  
-Date       : 2025-07-25  
-Compatibilite : PowerShell 5.1, module RSAT Active Directory requis
-
-.REQUIREMENTS
-- Doit être execute avec des droits suffisants sur un contrôleur de domaine.
-- Le module ActiveDirectory doit être installe (RSAT).
+Date       : 2025-07-25
 
 .EXAMPLE
 .\Tiering-AD.ps1

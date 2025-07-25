@@ -13,10 +13,6 @@ Auteur     : Kevin Gaonach
 Site Web   : https://github.com/kevin-gaonach/it-tips/  
 Version    : 1.0  
 Date       : 2025-07-25  
-Compatibilite : 
-
-.REQUIREMENTS
-
 
 .EXAMPLE
 .\<scriptname>.ps1

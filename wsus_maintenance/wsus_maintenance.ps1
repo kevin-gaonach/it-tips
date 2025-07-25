@@ -19,12 +19,7 @@ Un fichier de log est genere dans le repertoire du script, avec un nom base sur 
 Auteur     : Kevin Gaonach  
 Site Web   : https://github.com/kevin-gaonach/it-tips/  
 Version    : 1.0  
-Date       : 2025-07-25  
-Compatibilite : PowerShell 5.1, module WSUS requis
-
-.REQUIREMENTS
-- Être execute sur un serveur WSUS avec les droits administrateur.
-- Le module WSUS PowerShell doit être disponible (Get-WsusUpdate, Approve-WsusUpdate, etc.).
+Date       : 2025-07-25
 
 .EXAMPLE
 .\Maintenance-WSUS.ps1 -TargetGroup "Serveurs"

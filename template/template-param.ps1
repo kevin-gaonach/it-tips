@@ -15,11 +15,7 @@
 Auteur     : Kevin Gaonach  
 Site Web   : https://github.com/kevin-gaonach/it-tips/  
 Version    : 1.0  
-Date       : 2025-07-25  
-Compatibilite : 
-
-.REQUIREMENTS
-
+Date       : 2025-07-25
 
 .EXAMPLE
 .\<scriptname>.ps1
@@ -28,8 +24,8 @@ Compatibilite :
 #>
 
 param (
-    [Parameter(Mandatory = $true, HelpMessage = "Nom du groupe cible WSUS (ex: 'Serveurs')")]
-    [string]$TargetGroup
+    [Parameter(Mandatory = $true, HelpMessage = "<HELP>")]
+    [string]$Variable
 )
 
 $ErrorActionPreference = "Stop"
