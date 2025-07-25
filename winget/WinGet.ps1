@@ -1,4 +1,4 @@
-﻿Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 # Vérifie si le script est exécuté en tant qu'administrateur
@@ -29,109 +29,131 @@ if (!($wingetModuleInstalled)) {
 function Show-AppInstallerGUI {
     $form = New-Object Windows.Forms.Form
     $form.Text = "WinGet"
-    $form.Size = New-Object Drawing.Size(360, 1070)
-	
+    $form.Size = New-Object Drawing.Size(800, 730)
     $form.StartPosition = "CenterScreen"
+    $form.AutoScroll = $true
 
-	$titleLabel = New-Object Windows.Forms.Label
-	$titleLabel.Text = "❤ Applications list by Kevin Gaonach ❤"
-	$titleLabel.Font = New-Object Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Bold)
-	$titleLabel.ForeColor = [System.Drawing.Color]::Crimson
-	$titleLabel.Size = New-Object Drawing.Size(320, 25)
-	$titleLabel.Location = New-Object Drawing.Point(10, 5)
-	$form.Controls.Add($titleLabel)
+    $titleLabel = New-Object Windows.Forms.Label
+    $titleLabel.Text = "❤ Applications list by Kevin Gaonach ❤"
+    $titleLabel.Font = New-Object Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Bold)
+    $titleLabel.ForeColor = [System.Drawing.Color]::Crimson
+    $titleLabel.Size = New-Object Drawing.Size(360, 25)
+    $titleLabel.Location = New-Object Drawing.Point(200, 5)
+    $form.Controls.Add($titleLabel)
 
- $categories = @{
-    "Développement" = @{
-        "GitHub Desktop - Interface graphique pour GitHub" = "GitHub.GitHubDesktop"
+    $categories = @{
+        "Développement" = @{
+            "GitHub Desktop" = "GitHub.GitHubDesktop"
+        }
+        "Communication" = @{
+            "Discord" = "Discord.Discord"
+        }
+        "Admins" = @{
+            "PuTTY" = "PuTTY.PuTTY"
+            "WinSCP" = "WinSCP.WinSCP"
+            "mRemoteNG" = "mRemoteNG.mRemoteNG"
+        }
+        "Streaming" = @{
+            "StreamDeck" = "Elgato.StreamDeck"
+            "OBS Studio" = "OBSProject.OBSStudio"
+        }
+        "Monitoring" = @{
+            "Rivatuner Statistics Server" = "Guru3D.RTSS"
+            "Afterburner" = "Guru3D.Afterburner"
+            "OCCT" = "OCBase.OCCT.Personal"
+        }
+        "Gaming" = @{
+            "Amazon Games" = "Amazon.Games"
+            "EA Desktop" = "ElectronicArts.EADesktop"
+            "Epic Games" = "EpicGames.EpicGamesLauncher"
+            "Playnite" = "Playnite.Playnite"
+            "Steam" = "Valve.Steam"
+            "Ubisoft Connect" = "Ubisoft.Connect"
+            "GOG Galaxy" = "GOG.Galaxy"
+        }
+        "Système" = @{
+            "TunnelBear VPN" = "TunnelBear.TunnelBear"
+            "Veeam Agent" = "Veeam.VeeamAgent"
+            "WinDirStat" = "WinDirStat.WinDirStat"
+            "WingetUI" = "MartiCliment.UniGetUI"
+            "System Informer" = "WinsiderSS.SystemInformer"
+            "TeamViewer" = "TeamViewer.TeamViewer"
+        }
+        "Bureautique" = @{
+            "PDFsam" = "PDFsam.PDFsam"
+            "Adobe Reader" = "Adobe.Acrobat.Reader.64-bit"
+            "Chrome" = "Google.Chrome"
+            "Firefox" = "Mozilla.Firefox.fr"
+            "7-Zip" = "7zip.7zip"
+            "Ant Renamer" = "AntSoftware.AntRenamer"
+            "KeePassXC" = "KeePassXCTeam.KeePassXC"
+            "VLC" = "VideoLAN.VLC"
+            "Greenshot" = "Greenshot.Greenshot"
+            "Notepad++" = "Notepad++.Notepad++"
+        }
     }
-    "Communication" = @{
-        "Discord - Chat vocal / texte" = "Discord.Discord"
-    }
-    "Admins" = @{
-        "PuTTY - Client SSH/Telnet" = "PuTTY.PuTTY"
-        "WinSCP - Transfert de fichiers SFTP/FTP" = "WinSCP.WinSCP"
-        "mRemoteNG - Gestionnaire de connexions RDP/SSH" = "mRemoteNG.mRemoteNG"
-    }
-    "Streaming" = @{
-        "StreamDeck - Contrôle de scènes et macros" = "Elgato.StreamDeck"
-        "OBS Studio - Logiciel de streaming/recording" = "OBSProject.OBSStudio"
-    }
-    "Monitoring" = @{
-        "Rivatuner - Affichage stats CPU/GPU en jeu" = "Guru3D.RTSS"
-        "Afterburner - Overclocking et monitoring GPU" = "Guru3D.Afterburner"
-        "OCCT - Test de stabilité CPU/GPU et PSU" = "OCBase.OCCT.Personal"
-    }
-    "Gaming" = @{
-        "Amazon Games - Lanceur de jeux Amazon" = "Amazon.Games"
-        "EA Desktop - Lanceur de jeux  EA" = "ElectronicArts.EADesktop"
-        "Epic Games - Lanceur de jeux Epic Games" = "EpicGames.EpicGamesLauncher"
-        "Playnite - Bibliothèque unifiée de jeux" = "Playnite.Playnite"
-        "Steam - Lanceur de jeux Steam" = "Valve.Steam"
-        "Ubisoft Connect - Lanceur de jeux  Ubisoft" = "Ubisoft.Connect"
-        "GOG Galaxy - Lanceur de jeux GOG" = "GOG.Galaxy"
-    }
-    "Système" = @{
-        "TunnelBear VPN - VPN simple et visuel" = "TunnelBear.TunnelBear"
-        "Veeam Agent - Sauvegarde/restauration système" = "Veeam.VeeamAgent"
-        "WinDirStat - Analyse de l'espace disque" = "WinDirStat.WinDirStat"
-        "WingetUI - Interface graphique pour winget" = "MartiCliment.UniGetUI"
-        "System Informer - Gestionnaire de tâches avancé" = "WinsiderSS.SystemInformer"
-        "TeamViewer - Accès distant sécurisé" = "TeamViewer.TeamViewer"
-    }
-    "Bureautique" = @{
-        "PDFsam - Fusion/split de PDF" = "PDFsam.PDFsam"
-        "Adobe Reader - Lecteur PDF officiel" = "Adobe.Acrobat.Reader.64-bit"
-        "Chrome - Navigateur rapide de Google" = "Google.Chrome"
-        "Firefox - Navigateur libre & respectueux de la vie privée" = "Mozilla.Firefox.fr"
-        "7-Zip - Compression/décompression de fichiers" = "7zip.7zip"
-        "Ant Renamer - Renommage de fichiers en masse" = "AntSoftware.AntRenamer"
-        "KeePassXC - Gestionnaire de mots de passe" = "KeePassXCTeam.KeePassXC"
-        "VLC - Lecteur multimédia universel" = "VideoLAN.VLC"
-        "Greenshot - Capture d’écran simple et efficace" = "Greenshot.Greenshot"
-        "Notepad++ - Éditeur de texte" = "Notepad++.Notepad++"
-    }
-}
-
 
     $checkboxes = @{}
-    $y = 35
+    $currentY = 40
+    $padding = 10
+    $checkboxWidth = 180
+    $checkboxHeight = 22
+    $formWidth = $form.ClientSize.Width
 
     foreach ($category in $categories.Keys) {
-        # 🏷️ Affichage du nom de la catégorie
+        # Label de catégorie
         $label = New-Object Windows.Forms.Label
         $label.Text = "$category"
         $label.Font = New-Object Drawing.Font("Segoe UI", 10, [System.Drawing.FontStyle]::Bold)
-        $label.Location = New-Object Drawing.Point(10, $y)
+        $label.Location = New-Object Drawing.Point($padding, $currentY)
         $label.Size = New-Object Drawing.Size(700, 20)
         $form.Controls.Add($label)
-        $y += 25
+        $currentY += 25
 
-        foreach ($appName in $categories[$category].Keys) {
+        # Calcul du nombre de colonnes selon la largeur disponible
+        $columnsPerRow = [math]::Floor(($formWidth - 2 * $padding) / $checkboxWidth)
+        if ($columnsPerRow -lt 1) { $columnsPerRow = 1 }
+
+        $appList = @($categories[$category].Keys)
+        for ($i = 0; $i -lt $appList.Count; $i++) {
+            $column = $i % $columnsPerRow
+            $row = [math]::Floor($i / $columnsPerRow)
+
+            $x = $padding + ($column * $checkboxWidth)
+            $y = $currentY + ($row * $checkboxHeight)
+
             $checkbox = New-Object Windows.Forms.CheckBox
-            $checkbox.Text = "$appName"
-            $checkbox.Location = New-Object Drawing.Point(30, $y)
-            $checkbox.Width = 700
+            $checkbox.Text = $appList[$i]
+            $checkbox.Width = $checkboxWidth - 10
+            $checkbox.Location = New-Object Drawing.Point($x, $y)
             $checkbox.Checked = $true
             $form.Controls.Add($checkbox)
-            $checkboxes[$appName] = $checkbox
-            $y += 20
+
+            $checkboxes[$appList[$i]] = $checkbox
         }
 
-        $y += 10
+        $rowsUsed = [math]::Ceiling($appList.Count / $columnsPerRow)
+        $currentY += ($rowsUsed * $checkboxHeight) + 15
     }
 
-    # 🚀 Bouton d’installation
+    # Bouton d’installation
     $installButton = New-Object Windows.Forms.Button
     $installButton.Text = "Installer les applications sélectionnées"
-    $installButton.Width = 150
+    $installButton.Width = 200
     $installButton.Height = 40
-    $installButton.Location = New-Object Drawing.Point(20, $y)
+    $installButton.Location = New-Object Drawing.Point(180, $currentY)
     $form.Controls.Add($installButton)
+
+    # Bouton de mise à jour
+    $updateButton = New-Object Windows.Forms.Button
+    $updateButton.Text = "Mettre à jour les applications"
+    $updateButton.Width = 200
+    $updateButton.Height = 40
+    $updateButton.Location = New-Object Drawing.Point(420, $currentY)
+    $form.Controls.Add($updateButton)
 
     $installButton.Add_Click({
         $selectedApps = @()
-
         foreach ($category in $categories.Keys) {
             foreach ($appName in $categories[$category].Keys) {
                 if ($checkboxes[$appName].Checked) {
@@ -155,28 +177,19 @@ function Show-AppInstallerGUI {
         }
 
         [System.Windows.Forms.MessageBox]::Show("Installation terminée.", "Terminé", "OK", "Information")
-		$form.Close()
+        $form.Close()
+    })
 
-
-})
-		
-		# 🔄 Bouton de mise à jour
-		$updateButton = New-Object Windows.Forms.Button
-		$updateButton.Text = "Mettre à jour les applications installées"
-		$updateButton.Width = 150
-		$updateButton.Height = 40
-		$updateButton.Location = New-Object Drawing.Point(180, $y)
-		$form.Controls.Add($updateButton)
-		
-		$updateButton.Add_Click({
-		Write-Host "Mise à jour de toutes les applications installées via WinGet..." -ForegroundColor Blue
+    $updateButton.Add_Click({
+        Write-Host "Mise à jour de toutes les applications installées via WinGet..." -ForegroundColor Blue
         winget upgrade --all --accept-source-agreements --accept-package-agreements
         Write-Host "Mise à jour terminée." -ForegroundColor Green
         [System.Windows.Forms.MessageBox]::Show("Mise à jour terminée.", "Succès", "OK", "Information")
-		$form.Close()
+        $form.Close()
     })
 
     [void]$form.ShowDialog()
 }
+
 
 Show-AppInstallerGUI
