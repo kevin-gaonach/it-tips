@@ -55,67 +55,82 @@ if (!($wingetModuleInstalled)) {
 function Show-AppInstallerGUI {
     $form = New-Object Windows.Forms.Form
     $form.Text = "WinGet"
-    $form.Size = New-Object Drawing.Size(800, 730)
+    $form.Size = New-Object Drawing.Size(800, 800)
     $form.StartPosition = "CenterScreen"
     $form.AutoScroll = $true
 
-    $titleLabel = New-Object Windows.Forms.Label
-    $titleLabel.Text = "Applications list by Kevin Gaonach"
-    $titleLabel.Font = New-Object Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Bold)
-    $titleLabel.ForeColor = [System.Drawing.Color]::Crimson
-    $titleLabel.Size = New-Object Drawing.Size(360, 25)
-    $titleLabel.Location = New-Object Drawing.Point(200, 5)
-    $form.Controls.Add($titleLabel)
+	$titleLabel = New-Object Windows.Forms.Label
+	$titleLabel.Text = "Applications list by Kevin Gaonach"
+	$titleLabel.Font = New-Object Drawing.Font("Segoe UI", 12, [System.Drawing.FontStyle]::Bold)
+	$titleLabel.ForeColor = [System.Drawing.Color]::Crimson
+	$titleLabel.AutoSize = $true
+	$titleLabel.Location = New-Object Drawing.Point(0, 5)  # sera centré ensuite
+	$form.Controls.Add($titleLabel)
+	$form.Add_Shown({
+		$titleLabel.Left = ($form.ClientSize.Width - $titleLabel.Width) / 2
+	})
 
-    $categories = @{
-        "Developpement" = @{
-            "GitHub Desktop" = "GitHub.GitHubDesktop"
-        }
-        "Communication" = @{
-            "Discord" = "Discord.Discord"
-        }
-        "Admins" = @{
-            "PuTTY" = "PuTTY.PuTTY"
-            "WinSCP" = "WinSCP.WinSCP"
-            "mRemoteNG" = "mRemoteNG.mRemoteNG"
-        }
-        "Streaming" = @{
-            "StreamDeck" = "Elgato.StreamDeck"
-            "OBS Studio" = "OBSProject.OBSStudio"
-        }
-        "Monitoring" = @{
-            "Rivatuner Statistics Server" = "Guru3D.RTSS"
-            "Afterburner" = "Guru3D.Afterburner"
-            "OCCT" = "OCBase.OCCT.Personal"
-        }
-        "Gaming" = @{
-            "Amazon Games" = "Amazon.Games"
-            "EA Desktop" = "ElectronicArts.EADesktop"
-            "Epic Games" = "EpicGames.EpicGamesLauncher"
-            "Playnite" = "Playnite.Playnite"
-            "Steam" = "Valve.Steam"
-            "Ubisoft Connect" = "Ubisoft.Connect"
-            "GOG Galaxy" = "GOG.Galaxy"
-        }
-        "Systeme" = @{
-            "TunnelBear VPN" = "TunnelBear.TunnelBear"
-            "Veeam Agent" = "Veeam.VeeamAgent"
-            "WinDirStat" = "WinDirStat.WinDirStat"
-            "WingetUI" = "MartiCliment.UniGetUI"
-            "System Informer" = "WinsiderSS.SystemInformer"
-            "TeamViewer" = "TeamViewer.TeamViewer"
-        }
-        "Bureautique" = @{
+    $categories = [ordered]@{
+        "Bureautique" = [ordered]@{
             "PDFsam" = "PDFsam.PDFsam"
             "Adobe Reader" = "Adobe.Acrobat.Reader.64-bit"
-            "Chrome" = "Google.Chrome"
-            "Firefox" = "Mozilla.Firefox.fr"
             "7-Zip" = "7zip.7zip"
             "Ant Renamer" = "AntSoftware.AntRenamer"
             "KeePassXC" = "KeePassXCTeam.KeePassXC"
             "VLC" = "VideoLAN.VLC"
             "Greenshot" = "Greenshot.Greenshot"
             "Notepad++" = "Notepad++.Notepad++"
+            "Chrome" = "Google.Chrome"
+            "Firefox" = "Mozilla.Firefox.fr"
+			"Brave" = "Brave.Brave"
+        }
+        "Systeme" = [ordered]@{
+			"TeamViewer" = "TeamViewer.TeamViewer"
+            "WinDirStat" = "WinDirStat.WinDirStat"
+            "WingetUI" = "MartiCliment.UniGetUI"
+            "System Informer" = "WinsiderSS.SystemInformer"
+        }
+		"Securite" = [ordered]@{
+            "VPN TunnelBear" = "TunnelBear.TunnelBear"
+			"VPN Proton" = "Proton.ProtonVPN"
+			"VPN WireGuard" = "WireGuard.WireGuard"
+		    "Veeam Agent" = "Veeam.VeeamAgent"
+			"Malwarebytes" = "Malwarebytes.Malwarebytes"
+		}
+		"Hardware" = [ordered]@{
+			"Logitech G HUB" = "Logitech.GHUB"
+			"Corsair iCUE 5" = "Corsair.iCUE.5"
+			"MSI Center" = "Micro-StarInternational.MSICenter"
+			"StreamDeck" = "Elgato.StreamDeck"
+		}
+		"Gaming" = [ordered]@{
+            "Playnite" = "Playnite.Playnite"
+            "Amazon Games" = "Amazon.Games"
+            "EA Desktop" = "ElectronicArts.EADesktop"
+            "Epic Games" = "EpicGames.EpicGamesLauncher"
+            "Steam" = "Valve.Steam"
+            "Ubisoft Connect" = "Ubisoft.Connect"
+            "GOG Galaxy" = "GOG.Galaxy"
+        }
+		"Monitoring" = [ordered]@{
+            "Rivatuner Statistics Server" = "Guru3D.RTSS"
+            "Afterburner" = "Guru3D.Afterburner"
+			"HWMonitor" = "CPUID.HWMonitor"
+			"Crystal Disk Info" = "CrystalDewWorld.CrystalDiskInfo"
+        }
+		"Benchmark" = [ordered]@{
+			"OCCT" = "OCBase.OCCT.Personal"
+			"Crystal Disk Mark" = "CrystalDewWorld.CrystalDiskMark"
+			"Cinebench R23" = "Maxon.CinebenchR23"
+		}
+        "Streaming" = [ordered]@{
+            "OBS Studio" = "OBSProject.OBSStudio"
+        }
+        "DEVOPS" = [ordered]@{
+            "PuTTY" = "PuTTY.PuTTY"
+            "WinSCP" = "WinSCP.WinSCP"
+            "mRemoteNG" = "mRemoteNG.mRemoteNG"
+			"GitHub Desktop" = "GitHub.GitHubDesktop"
         }
     }
 
@@ -152,7 +167,7 @@ function Show-AppInstallerGUI {
             $checkbox.Text = $appList[$i]
             $checkbox.Width = $checkboxWidth - 10
             $checkbox.Location = New-Object Drawing.Point($x, $y)
-            $checkbox.Checked = $true
+            $checkbox.Checked = $false
             $form.Controls.Add($checkbox)
 
             $checkboxes[$appList[$i]] = $checkbox
@@ -162,20 +177,40 @@ function Show-AppInstallerGUI {
         $currentY += ($rowsUsed * $checkboxHeight) + 15
     }
 
+	# Bouton Tout cocher / décocher
+	$toggleAllButton = New-Object Windows.Forms.Button
+	$toggleAllButton.Text = "Tout cocher"
+	$toggleAllButton.Width = 60
+	$toggleAllButton.Height = 40
+	$toggleAllButton.Location = New-Object Drawing.Point(20, $currentY)
+	$form.Controls.Add($toggleAllButton)
+	
+	$toggleAllButton.Add_Click({
+		$shouldCheck = $checkboxes.Values | Where-Object { -not $_.Checked } | Measure-Object | Select-Object -ExpandProperty Count
+		$newState = ($shouldCheck -gt 0)
+	
+		foreach ($cb in $checkboxes.Values) {
+			$cb.Checked = $newState
+		}
+	
+		$toggleAllButton.Text = if ($newState) { "Tout decocher" } else { "Tout cocher" }
+	})
+
     # Bouton d’installation
     $installButton = New-Object Windows.Forms.Button
     $installButton.Text = "Installer les applications selectionnees"
+	$installButton.Font = New-Object System.Drawing.Font("Segoe UI", 10, [System.Drawing.FontStyle]::Bold)
     $installButton.Width = 200
     $installButton.Height = 40
-    $installButton.Location = New-Object Drawing.Point(180, $currentY)
+    $installButton.Location = New-Object Drawing.Point(250, $currentY)
     $form.Controls.Add($installButton)
 
     # Bouton de mise a jour
     $updateButton = New-Object Windows.Forms.Button
-    $updateButton.Text = "Mettre a jour les applications"
-    $updateButton.Width = 200
+    $updateButton.Text = "Mettre a jour les applications deja installees"
+    $updateButton.Width = 160
     $updateButton.Height = 40
-    $updateButton.Location = New-Object Drawing.Point(420, $currentY)
+    $updateButton.Location = New-Object Drawing.Point(600, $currentY)
     $form.Controls.Add($updateButton)
 
     $installButton.Add_Click({
