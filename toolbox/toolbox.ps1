@@ -86,7 +86,7 @@ foreach ($app in $apps) {
     Write-Log "Installation de $($app.Name)..."
     
     try {
-        $result = Install-WinGetPackage -Id $app.Id -Scope System -Source winget -ErrorAction Stop
+        $result = Install-WinGetPackage -Id $app.Id -Source winget -ErrorAction Stop
 
         $results += [pscustomobject]@{
             Package   = $app.Name
